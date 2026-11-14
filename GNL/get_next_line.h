@@ -3,20 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ily4s <ily4s@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ilait-sa <ilait-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 15:30:12 by ilait-sa          #+#    #+#             */
-/*   Updated: 2026/11/03 19:19:38 by ily4s            ###   ########.fr       */
+/*   Updated: 2026/11/14 17:33:56 by ilait-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUFFER_SIZE 5
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+#endif
 
 # include <stdlib.h>
-# include <stdio.h>
 # include <unistd.h>
 
 char	*ft_strjoin(char const *s1, char const *s2);

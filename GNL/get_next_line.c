@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ily4s <ily4s@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ilait-sa <ilait-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 15:30:12 by ilait-sa          #+#    #+#             */
-/*   Updated: 2026/11/04 13:13:07 by ily4s            ###   ########.fr       */
+/*   Updated: 2026/11/14 18:46:17 by ilait-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ char	*get_next_line(int fd)
 	static char	*stash[1024];
 	ssize_t		data_size;
 
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
+		return (0);
 	if (!read_buffer(fd, &stash[fd], &data_size))
 		return (NULL);
 	if (!stash[fd] || !stash[fd][0])
