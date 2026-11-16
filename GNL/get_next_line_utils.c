@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ily4s <ily4s@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ilait-sa <ilait-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/11/03 18:00:00 by ily4s             #+#    #+#             */
-/*   Updated: 2026/11/04 01:54:08 by ily4s            ###   ########.fr       */
+/*   Created: 2026/11/03 18:00:00 by ilait-sa          #+#    #+#             */
+/*   Updated: 2026/11/15 18:26:36 by ilait-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,12 @@ char	*cut_str(char *str, int i)
 	}
 	s[j] = '\0';
 	return (s);
+}
+
+int	clean_exit(char **stash, char *buffer)
+{
+	free(buffer);
+	free(*stash);
+	*stash = NULL;
+	return (0);
 }

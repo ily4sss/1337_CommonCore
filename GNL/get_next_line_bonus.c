@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ily4s <ily4s@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ilait-sa <ilait-sa@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/28 15:30:12 by ilait-sa          #+#    #+#             */
-/*   Updated: 2026/11/15 16:04:36 by ily4s            ###   ########.fr       */
+/*   Updated: 2026/11/15 18:18:50 by ilait-sa         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup(const char *s)
 {
@@ -86,15 +86,13 @@ static int	read_buffer(int fd, char **stash, ssize_t *data_size)
 	{
 		*data_size = read(fd, buffer, BUFFER_SIZE);
 		if (*data_size == -1)
-		{
-			free(buffer);
-			*stash = NULL;
-			return (0);
-		}
+			return (clean_exit(stash, buffer));
 		buffer[*data_size] = '\0';
 		old_stash = *stash;
 		*stash = ft_strjoin(*stash, buffer);
 		free(old_stash);
+		if (!(*stash))
+			return (clean_exit(stash, buffer));
 	}
 	free(buffer);
 	return (1);
@@ -110,6 +108,10 @@ char	*get_next_line(int fd)
 	if (!read_buffer(fd, &stash[fd], &data_size))
 		return (NULL);
 	if (!stash[fd] || !stash[fd][0])
+	{
+		free(stash[fd]);
+		stash[fd] = NULL;
 		return (NULL);
+	}
 	return (extract_line(&stash[fd], data_size));
 }
